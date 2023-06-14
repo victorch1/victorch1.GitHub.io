@@ -9,7 +9,8 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(78, 68, 216);
+			border-radius: 100%;
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -22,6 +23,7 @@
 
 		.board {
 			height: 100vh;
+			background-color: red;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -80,6 +82,12 @@
 				/* Your Code to Increase positionX by 10 HERE*/
 				positionX = positionX + speed;
 				moveBoxTo(positionX)
+				if (positionX > boardWidth) {
+					speed = -speed;
+				}
+				if (positionX < 0) {
+					speed = speed * -1
+				}
 
 			};
 
@@ -91,7 +99,11 @@
 			function handleBoxClick() {
 				positionX = 0;
 				points++
-				speed = speed + 3
+				if (speed > 0) {
+					speed = speed + 3
+				} else if(speed < 0) {
+					speed = speed - 3
+				}
 				changeBoxText(points);
 
 			};
